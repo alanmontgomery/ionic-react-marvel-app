@@ -27,11 +27,12 @@ import { useEffect } from 'react';
 const App = () => {
 
   useEffect(() => {
-    
+    const buttInstall = document.getElementById('buttInstall');
     window.addEventListener('beforeinstallprompt', (event) => {
       console.log('👍', 'beforeinstallprompt', event);
       // Stash the event so it can be triggered later.
       window.deferredPrompt = event;
+      buttInstall.classList.toggle('hidden', false);
     });
   }, []);
 

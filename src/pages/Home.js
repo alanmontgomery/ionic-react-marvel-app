@@ -57,7 +57,9 @@ const Home = () => {
 
 	const addToHomeScreen = async () => {
 
-		console.log('👍', 'butInstall-clicked');
+		const buttInstall = document.getElementById('buttInstall');
+
+		console.log('👍', 'buttInstall-clicked');
 		const promptEvent = window.deferredPrompt;
 		if (!promptEvent) {
 			// The deferred prompt isn't available.
@@ -71,6 +73,9 @@ const Home = () => {
 		// Reset the deferred prompt variable, since
 		// prompt() can only be called once.
 		window.deferredPrompt = null;
+
+		// Hide the install button.
+		buttInstall.classList.toggle('hidden', true);
 	}
 
 	return (
@@ -83,8 +88,8 @@ const Home = () => {
 							<IonIcon icon={ searchOutline } />
 						</IonButton>
 
-						<IonButton color="dark" className="add-button" onClick={ () => addToHomeScreen() }>
-							<IonIcon icon={ addOutline } />
+						<IonButton id="buttInstall" color="danger" fill="solid" size="small" className="add-button hidden" onClick={ () => addToHomeScreen() }>
+							<IonIcon icon={ addOutline } />&nbsp;&nbsp;Install App
 						</IonButton>
 
 						<IonButton color="danger" onClick={ () => setGrid(grid => !grid) }>
