@@ -117,14 +117,15 @@ const ViewCharacter = () => {
 
 				<IonHeader collapse="condense">
 					<IonToolbar>
-						<IonItem lines="none">
-							<IonImg src={ `${ character.thumbnail.path }.${ character.thumbnail.extension }` } />
-							<div className={ styles.characterNameContainer }>
-								<IonLabel>{ character.name }</IonLabel>
-							</div>
-						</IonItem>
 					</IonToolbar>
 				</IonHeader>
+
+				<IonItem lines="none">
+					<IonImg src={ `${ character.thumbnail.path }.${ character.thumbnail.extension }` } />
+					<div className={ styles.characterNameContainer }>
+						<IonLabel>{ character.name }</IonLabel>
+					</div>
+				</IonItem>
 
 				<IonGrid>
 
