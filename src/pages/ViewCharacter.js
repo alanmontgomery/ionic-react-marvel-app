@@ -96,11 +96,12 @@ const ViewCharacter = () => {
     <IonPage id="view-message-page">
       <IonHeader translucent>
         <IonToolbar>
-			<IonTitle>{ character && character.name }</IonTitle>
           <IonButtons>
-            <IonBackButton text="Characters"></IonBackButton>
-			{/* <IonButton onClick={ () => history.push("/home") }>Back</IonButton> */}
+            	<IonBackButton text="Characters"></IonBackButton>
+				{/* <IonButton onClick={ () => history.push("/home") }>Back</IonButton> */}
           </IonButtons>
+
+		  <IonTitle>{ character && character.name }</IonTitle>
 
 		  <IonButtons slot="end">
 			  <IonButton color="dark">
