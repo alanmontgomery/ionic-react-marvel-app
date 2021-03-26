@@ -84,7 +84,6 @@ const ViewCharacter = () => {
 				if (data.data.results) {
 
 					const result = data.data.results[0];
-					console.log(result);
 					setCharacter(result);
 					parseComics(result);
 				}

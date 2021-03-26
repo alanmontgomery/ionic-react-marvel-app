@@ -11,25 +11,30 @@ const Home = () => {
 	const [ amountLoaded, setAmountLoaded ] = useState(20);
 
 	useEffect(() => {
+    
+		const buttInstall = document.getElementById('buttInstall');
+		window.addEventListener('beforeinstallprompt', (event) => {
+		  console.log('👍', 'beforeinstallprompt', event);
+		  // Stash the event so it can be triggered later.
+		  window.deferredPrompt = event;
+		  buttInstall.classList.toggle('hidden', false);
+		});
+	
+		window.addEventListener('appinstalled', (event) => {
+		  console.log('👍', 'appinstalled', event);
+		  // Clear the deferredPrompt so it can be garbage collected
+		  window.deferredPrompt = null;
+		});
+	  }, []);
+
+	useEffect(() => {
 
 		const getCharacters = async () => {
 
 			const response = await fetch("https://gateway.marvel.com/v1/public/characters?ts=alan123&apikey=039a23cca3a39f118230cd8157818389&hash=299d6a11a57fba5daa00b4bebaa3ca74&limit=20&orderBy=-modified");
 			const data = await response.json();
 
-			if (data) {
-
-				if (data.data) {
-
-					if (data.data.results) {
-
-						
-					}
-				}
-			}
-
 			const results = data.data.results;
-			console.log(results);
 			setCharacters(results);
 		}
 
