@@ -8,6 +8,8 @@ An Ionic React mobile app for viewing marvel characters and comics
 - API used is https://marvel.docs.apiary.io
 
 ## Features of this app
+* Fully enabled PWA
+* Custom `Install App` functionality with custom button for PWA
 * View a list of comic book/marvel characters
 * `IonSkeletonText` usage for loading
 * `IonInfiniteScroll` to load in 20 characters at a time until scroll threshold reached
