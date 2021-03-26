@@ -1,7 +1,7 @@
 # ionic-react-marvel-app
 An Ionic React mobile app for viewing marvel characters and comics
 
-[Live Demo as a PWA (not installable, just web based)](https://ionic-react-marvel-app.vercel.app)
+## [Live Demo as a PWA (custom install experience included)](https://ionic-react-marvel-app.vercel.app)
 
 > This is a good example of how to fetch data from an API endpoint in Ionic React
 
