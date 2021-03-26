@@ -71,8 +71,6 @@ const Home = () => {
 
 	const addToHomeScreen = () => {
 
-		// Hide the app provided install promotion
-		hideInstallPromotion();
 		// Show the install prompt
 		deferredPrompt.prompt();
 		// Wait for the user to respond to the prompt
