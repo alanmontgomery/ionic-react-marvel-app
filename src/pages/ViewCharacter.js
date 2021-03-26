@@ -36,7 +36,7 @@ const ViewCharacter = () => {
 	const getComic = async comicID => {
 
 		var comicImageURL = false;
-		const response = await fetch(`http://gateway.marvel.com/v1/public/comics/${ comicID }?ts=alan123&apikey=039a23cca3a39f118230cd8157818389&hash=299d6a11a57fba5daa00b4bebaa3ca74`);
+		const response = await fetch(`https://gateway.marvel.com/v1/public/comics/${ comicID }?ts=alan123&apikey=039a23cca3a39f118230cd8157818389&hash=299d6a11a57fba5daa00b4bebaa3ca74`);
 		const data = await response.json();
 
 		if (data) {
@@ -74,7 +74,7 @@ const ViewCharacter = () => {
 
 	useIonViewWillEnter(async () => {
 
-		const response = await fetch(`http://gateway.marvel.com/v1/public/characters/${ params.id }?ts=alan123&apikey=039a23cca3a39f118230cd8157818389&hash=299d6a11a57fba5daa00b4bebaa3ca74`);
+		const response = await fetch(`https://gateway.marvel.com/v1/public/characters/${ params.id }?ts=alan123&apikey=039a23cca3a39f118230cd8157818389&hash=299d6a11a57fba5daa00b4bebaa3ca74`);
 		const data = await response.json();
 
 		if (data) {

@@ -14,7 +14,7 @@ const Home = () => {
 
 		const getCharacters = async () => {
 
-			const response = await fetch("http://gateway.marvel.com/v1/public/characters?ts=alan123&apikey=039a23cca3a39f118230cd8157818389&hash=299d6a11a57fba5daa00b4bebaa3ca74&limit=20&orderBy=-modified");
+			const response = await fetch("https://gateway.marvel.com/v1/public/characters?ts=alan123&apikey=039a23cca3a39f118230cd8157818389&hash=299d6a11a57fba5daa00b4bebaa3ca74&limit=20&orderBy=-modified");
 			const data = await response.json();
 
 			if (data) {
@@ -43,7 +43,7 @@ const Home = () => {
 		//	Lets limit it by 20, and offset it by the amount loaded already
 		//	E.g. 20, 40, 60 just like pagination :)
 		//	Get the response into json
-		const response = await fetch(`http://gateway.marvel.com/v1/public/characters?ts=alan123&apikey=039a23cca3a39f118230cd8157818389&hash=299d6a11a57fba5daa00b4bebaa3ca74&limit=20&offset=${ amountLoaded }&orderBy=-modified`);
+		const response = await fetch(`https://gateway.marvel.com/v1/public/characters?ts=alan123&apikey=039a23cca3a39f118230cd8157818389&hash=299d6a11a57fba5daa00b4bebaa3ca74&limit=20&offset=${ amountLoaded }&orderBy=-modified`);
 		const data = await response.json();
 		const results = data.data.results;
 
