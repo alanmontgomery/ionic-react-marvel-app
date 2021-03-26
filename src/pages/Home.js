@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { IonButton, IonButtons, IonContent, IonHeader, IonIcon, IonInfiniteScroll, IonInfiniteScrollContent, IonPage, IonRow, IonTitle, IonToolbar, useIonViewWillEnter } from '@ionic/react';
+import { IonButton, IonButtons, IonContent, IonHeader, IonIcon, IonInfiniteScroll, IonInfiniteScrollContent, IonPage, IonRow, IonTitle, IonToast, IonToolbar, useIonViewWillEnter } from '@ionic/react';
 import './Home.css';
 import { addOutline, expandOutline, gridOutline, searchOutline } from 'ionicons/icons';
 import CharacterItem from '../components/CharacterItem';
@@ -9,6 +9,7 @@ const Home = () => {
 	const [ grid, setGrid ] = useState(true);
 	const [ characters, setCharacters ] = useState([]);
 	const [ amountLoaded, setAmountLoaded ] = useState(20);
+	const [ showToast, setShowToast ] = useState({ show: false, message: "" });
 
 	useEffect(() => {
     
@@ -89,7 +90,7 @@ const Home = () => {
 				<IonToolbar>
 					<IonTitle>Marvel Characters</IonTitle>
 					<IonButtons slot="end">
-						<IonButton color="dark">
+						<IonButton color="dark" onClick={ () => setShowToast({ show: true, message: "We could easily add a search button here to search characters." }) }>
 							<IonIcon icon={ searchOutline } />
 						</IonButton>
 
@@ -132,6 +133,8 @@ const Home = () => {
 					</IonInfiniteScrollContent>
 				</IonInfiniteScroll>
 			</IonContent>
+
+			<IonToast isOpen={ showToast.show } onDidDismiss={ () => setShowToast({ show: false, message: "" }) } message={ showToast.message } duration={ 3500 } color="danger" />
 		</IonPage>
 	);
 };

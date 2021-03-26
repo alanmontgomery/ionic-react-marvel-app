@@ -18,6 +18,7 @@ import {
   IonRow,
   IonSkeletonText,
   IonTitle,
+  IonToast,
   IonToolbar,
   useIonViewWillEnter,
 } from '@ionic/react';
@@ -30,6 +31,7 @@ const ViewCharacter = () => {
   
 	const [ character, setCharacter ] = useState();
 	const [ characterComics, setCharacterComics ] = useState([]);
+	const [ showToast, setShowToast ] = useState({ show: false, message: "" });
 	const history = useHistory();
   	const params = useParams();
 
@@ -97,13 +99,12 @@ const ViewCharacter = () => {
         <IonToolbar>
           <IonButtons>
             	<IonBackButton text="Characters"></IonBackButton>
-				{/* <IonButton onClick={ () => history.push("/home") }>Back</IonButton> */}
           </IonButtons>
 
-		  <IonTitle>{ character && character.name }</IonTitle>
+		  { navigator.platform.match(/iPhone|iPod|iPad/) && <IonTitle>{ character && character.name }</IonTitle> }
 
 		  <IonButtons slot="end">
-			  <IonButton color="dark">
+			  <IonButton color="dark" onClick={ () => setShowToast({ show: true, message: "We could easily add a 'like' button here to add a character to favourites." }) }>
 				  <IonIcon icon={ heartOutline } />
 			  </IonButton>
 		  </IonButtons>
@@ -114,7 +115,6 @@ const ViewCharacter = () => {
 		  { character ?
 		  (
 			<>
-
 				<IonHeader collapse="condense">
 					<IonToolbar>
 					</IonToolbar>
@@ -231,6 +231,8 @@ const ViewCharacter = () => {
 		  	<IonSkeletonText animated style={{ width: "100%", height: "100vh" }} />
 		  }
       </IonContent>
+
+	  <IonToast isOpen={ showToast.show } onDidDismiss={ () => setShowToast({ show: false, message: "" }) } message={ showToast.message } duration={ 3500 } color="danger" />
     </IonPage>
   );
 }
