@@ -2,7 +2,6 @@ import { Redirect, Route } from 'react-router-dom';
 import { IonApp, IonRouterOutlet } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import Home from './pages/Home';
-import ViewMessage from './pages/ViewMessage';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -24,7 +23,7 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import ViewCharacter from './pages/ViewCharacter';
 
-const App: React.FC = () => (
+const App = () => (
   <IonApp>
     <IonReactRouter>
       <IonRouterOutlet>

@@ -22,8 +22,7 @@ import {
   useIonViewWillEnter,
 } from '@ionic/react';
 import { arrowRedoOutline, heartOutline, personCircle, shareOutline } from 'ionicons/icons';
-import { useParams } from 'react-router';
-import './ViewMessage.css';
+import { useHistory, useParams } from 'react-router';
 
 import styles from "./ViewCharacter.module.scss";
 
@@ -31,14 +30,26 @@ const ViewCharacter = () => {
   
 	const [ character, setCharacter ] = useState();
 	const [ characterComics, setCharacterComics ] = useState([]);
+	const history = useHistory();
   	const params = useParams();
 
 	const getComic = async comicID => {
 
-		const response = await fetch(`http://importmarvel.com/api/comics/${ comicID }`);
+		var comicImageURL = false;
+		const response = await fetch(`http://gateway.marvel.com/v1/public/comics/${ comicID }?ts=alan123&apikey=039a23cca3a39f118230cd8157818389&hash=299d6a11a57fba5daa00b4bebaa3ca74`);
 		const data = await response.json();
 
-		const comicImageURL = data.data.results[0].thumbnail.path + "/portrait_incredible." + data.data.results[0].thumbnail.extension;
+		if (data) {
+
+			if (data.data) {
+
+				if (data.data.results.length > 0) {
+
+					comicImageURL = data.data.results[0].thumbnail.path + "/portrait_incredible." + data.data.results[0].thumbnail.extension;
+				}
+			}
+		}
+
 		return comicImageURL;
 	}
 
@@ -63,12 +74,22 @@ const ViewCharacter = () => {
 
 	useIonViewWillEnter(async () => {
 
-		const response = await fetch(`http://importmarvel.com/api/characters/${ params.id }`);
+		const response = await fetch(`http://gateway.marvel.com/v1/public/characters/${ params.id }?ts=alan123&apikey=039a23cca3a39f118230cd8157818389&hash=299d6a11a57fba5daa00b4bebaa3ca74`);
 		const data = await response.json();
-		const result = data.data.results[0];
-		console.log(result);
-		setCharacter(result);
-		parseComics(result);
+
+		if (data) {
+
+			if (data.data) {
+
+				if (data.data.results) {
+
+					const result = data.data.results[0];
+					console.log(result);
+					setCharacter(result);
+					parseComics(result);
+				}
+			}
+		}
 	});
 
   return (
@@ -77,7 +98,8 @@ const ViewCharacter = () => {
         <IonToolbar>
 			<IonTitle>{ character && character.name }</IonTitle>
           <IonButtons>
-            <IonBackButton text="Characters" defaultHref="/home"></IonBackButton>
+            <IonBackButton text="Characters"></IonBackButton>
+			{/* <IonButton onClick={ () => history.push("/home") }>Back</IonButton> */}
           </IonButtons>
 
 		  <IonButtons slot="end">
@@ -141,27 +163,31 @@ const ViewCharacter = () => {
 
 					{ (character.urls) && 
 						<>
-							<IonRow>
-								<IonCol size="12">
-									<a href={ character.urls[1].url } target="_blank" rel="noreferrer" className="non-link">
-										<IonButton color="danger" expand="full">
-											View full profile on Marvel
-											<IonIcon slot="end" icon={ arrowRedoOutline } />
-										</IonButton>
-									</a>
-								</IonCol>
-							</IonRow>
+							{ character.urls[1] &&
+								<IonRow>
+									<IonCol size="12">
+										<a href={ character.urls[1].url } target="_blank" rel="noreferrer" className="non-link">
+											<IonButton color="danger" expand="full">
+												View full profile on Marvel
+												<IonIcon slot="end" icon={ arrowRedoOutline } />
+											</IonButton>
+										</a>
+									</IonCol>
+								</IonRow>
+							}
 
-							<IonRow>
-								<IonCol size="12">
-									<a href={ character.urls[2].url } target="_blank" rel="noreferrer" className="non-link">
-										<IonButton color="dark" expand="full">
-											View all comics on Marvel
-											<IonIcon slot="end" icon={ arrowRedoOutline } />
-										</IonButton>
-									</a>
-								</IonCol>
-							</IonRow> 
+							{ character.urls[2] &&
+								<IonRow>
+									<IonCol size="12">
+										<a href={ character.urls[2].url } target="_blank" rel="noreferrer" className="non-link">
+											<IonButton color="dark" expand="full">
+												View all comics on Marvel
+												<IonIcon slot="end" icon={ arrowRedoOutline } />
+											</IonButton>
+										</a>
+									</IonCol>
+								</IonRow>
+							}
 						</>
 					}
 
@@ -177,17 +203,20 @@ const ViewCharacter = () => {
 							<IonRow>
 								{ characterComics.map((comic, index) => {
 
-									return (
+									if (comic.image && comic.name) {
+										
+										return (
 
-										<IonCol key={ `${ character.name }_comic_${ index }` } size="6">
-											<IonItem lines="none">
-												<IonImg src={ comic.image } />
-												<div className={ styles.characterNameContainer }>
-													<IonLabel>{ comic.name }</IonLabel>
-												</div>
-											</IonItem>
-										</IonCol>
-									);
+											<IonCol key={ `${ character.name }_comic_${ index }` } size="6">
+												<IonItem lines="none">
+													<IonImg src={ comic.image } />
+													<div className={ styles.characterNameContainer }>
+														<IonLabel>{ comic.name }</IonLabel>
+													</div>
+												</IonItem>
+											</IonCol>
+										);
+									}
 								})}
 							</IonRow>
 						</>
