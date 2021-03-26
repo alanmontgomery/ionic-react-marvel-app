@@ -7,7 +7,7 @@ const Info = () => {
 	const profile = {
 		
 		name: "Alan Montgomery",
-		bio: "My name is Alan and I’m the author of the Ionic React Hub. I’m a Mobile Team Lead and Senior Developer and have built numerous production, real world mobile apps for local government authorities. I have a real passion and love is sharing my knowledge and expertise with developers wanting to learn and get better at using certain technologies.",
+		bio: "My name is Alan. I’m a Mobile Team Lead and Senior Developer and have built numerous production, real world mobile apps for local government authorities. I have a real passion and love is sharing my knowledge and expertise with developers wanting to learn and get better at using certain technologies.",
 		avatar: "/assets/alan.jpg",
 		codeLink: "https://github.com/alanmontgomery/ionic-react-marvel-app",
 		links: [
