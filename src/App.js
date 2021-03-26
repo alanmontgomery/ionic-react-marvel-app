@@ -27,7 +27,7 @@ import { useEffect } from 'react';
 const App = () => {
 
   useEffect(() => {
-
+    
     window.addEventListener('beforeinstallprompt', (event) => {
       console.log('👍', 'beforeinstallprompt', event);
       // Stash the event so it can be triggered later.

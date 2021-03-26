@@ -55,7 +55,7 @@ const Home = () => {
 		e.target.complete();
 	}
 
-	const addToHomeScreen = () => {
+	const addToHomeScreen = async () => {
 
 		console.log('👍', 'butInstall-clicked');
 		const promptEvent = window.deferredPrompt;
