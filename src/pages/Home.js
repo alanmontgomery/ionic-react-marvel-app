@@ -55,6 +55,24 @@ const Home = () => {
 		e.target.complete();
 	}
 
+	const addToHomeScreen = () => {
+
+		console.log('👍', 'butInstall-clicked');
+		const promptEvent = window.deferredPrompt;
+		if (!promptEvent) {
+			// The deferred prompt isn't available.
+			return;
+		}
+		// Show the install prompt.
+		promptEvent.prompt();
+		// Log the result
+		const result = await promptEvent.userChoice;
+		console.log('👍', 'userChoice', result);
+		// Reset the deferred prompt variable, since
+		// prompt() can only be called once.
+		window.deferredPrompt = null;
+	}
+
 	return (
 		<IonPage id="home-page">
 			<IonHeader>
@@ -63,6 +81,10 @@ const Home = () => {
 					<IonButtons slot="end">
 						<IonButton color="dark">
 							<IonIcon icon={ searchOutline } />
+						</IonButton>
+
+						<IonButton color="dark" className="add-button" onClick={ () => addToHomeScreen() }>
+							<IonIcon icon={ addOutline } />
 						</IonButton>
 
 						<IonButton color="danger" onClick={ () => setGrid(grid => !grid) }>

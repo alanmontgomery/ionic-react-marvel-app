@@ -22,8 +22,20 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 import ViewCharacter from './pages/ViewCharacter';
+import { useEffect } from 'react';
 
-const App = () => (
+const App = () => {
+
+  useEffect(() => {
+
+    window.addEventListener('beforeinstallprompt', (event) => {
+      console.log('👍', 'beforeinstallprompt', event);
+      // Stash the event so it can be triggered later.
+      window.deferredPrompt = event;
+    });
+  }, []);
+
+  return (
   <IonApp>
     <IonReactRouter>
       <IonRouterOutlet>
@@ -39,6 +51,7 @@ const App = () => (
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>
-);
+  );
+}
 
 export default App;
