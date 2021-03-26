@@ -1,31 +1,42 @@
-.character-container {
+.characterContainer {
 
     position: relative;
     text-align: center;
     color: white;
 }
-.character-name-container {
+
+ion-item {
+    --padding-start: 0;
+    --inner-padding-end: 0;
+}
+
+ion-label {
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.characterNameContainer {
 
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     align-content: center;
-    position:absolute;
+    position: absolute;
     z-index: 99999;
-    background-color: rgba(0,0,0,0.7);
+    background-color: rgba(0, 0, 0, 0.7);
     bottom: 0;
     width: 100%;
     padding-left: 1rem;
     padding-right: 1rem;
 }
 
-.character-name-container ion-icon {
+.characterNameContainer ion-icon {
 
-    margin-top: 0.5rem;
+    margin-top: 0.1rem;
 }
 
-.character-name-container ion-label {
+.characterNameContainer ion-label {
 
     font-size: 1rem;
     font-weight: 500;

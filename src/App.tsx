@@ -22,6 +22,7 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import ViewCharacter from './pages/ViewCharacter';
 
 const App: React.FC = () => (
   <IonApp>
@@ -33,8 +34,8 @@ const App: React.FC = () => (
         <Route path="/home" exact={true}>
           <Home />
         </Route>
-        <Route path="/message/:id">
-           <ViewMessage />
+        <Route path="/character/:id">
+           <ViewCharacter />
         </Route>
       </IonRouterOutlet>
     </IonReactRouter>
