@@ -22,27 +22,31 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 import ViewCharacter from './pages/ViewCharacter';
-import { useEffect } from 'react';
+import Info from './pages/Info';
 
 const App = () => {
-  
-  return (
-  <IonApp>
-    <IonReactRouter>
-      <IonRouterOutlet>
-        <Route path="/" exact={true}>
-          <Redirect to="/home" />
-        </Route>
-        <Route path="/home" exact={true}>
-          <Home />
-        </Route>
-        <Route path="/character/:id">
-           <ViewCharacter />
-        </Route>
-      </IonRouterOutlet>
-    </IonReactRouter>
-  </IonApp>
-  );
+
+	return (
+		<IonApp>
+			<IonReactRouter>
+				<IonRouterOutlet>
+					<Route path="/" exact={true}>
+						<Redirect to="/home" />
+					</Route>
+					<Route path="/home" exact={true}>
+						<Home />
+					</Route>
+					<Route path="/character/:id">
+						<ViewCharacter />
+					</Route>
+
+					<Route path="/info">
+						<Info />
+					</Route>
+				</IonRouterOutlet>
+			</IonReactRouter>
+		</IonApp>
+	);
 }
 
 export default App;

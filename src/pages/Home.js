@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { IonButton, IonButtons, IonContent, IonHeader, IonIcon, IonInfiniteScroll, IonInfiniteScrollContent, IonPage, IonRow, IonTitle, IonToast, IonToolbar, useIonViewWillEnter } from '@ionic/react';
+import { IonButton, IonButtons, IonContent, IonHeader, IonIcon, IonInfiniteScroll, IonInfiniteScrollContent, IonPage, IonRow, IonTitle, IonToast, IonToolbar } from '@ionic/react';
 import './Home.css';
-import { addOutline, expandOutline, gridOutline, searchOutline } from 'ionicons/icons';
+import { addOutline, expandOutline, gridOutline, informationCircleOutline, searchOutline } from 'ionicons/icons';
 import CharacterItem from '../components/CharacterItem';
 
 const Home = () => {
@@ -15,18 +15,21 @@ const Home = () => {
     
 		const buttInstall = document.getElementById('buttInstall');
 		window.addEventListener('beforeinstallprompt', (event) => {
-		  console.log('👍', 'beforeinstallprompt', event);
-		  // Stash the event so it can be triggered later.
-		  window.deferredPrompt = event;
-		  buttInstall.classList.toggle('hidden', false);
+			
+			console.log('👍', 'beforeinstallprompt', event);
+			
+			//	Save the event so it can be triggered later.
+			window.deferredPrompt = event;
+			buttInstall.classList.toggle('hidden', false);
 		});
 	
 		window.addEventListener('appinstalled', (event) => {
-		  console.log('👍', 'appinstalled', event);
-		  // Clear the deferredPrompt so it can be garbage collected
-		  window.deferredPrompt = null;
+			
+			console.log('👍', 'appinstalled', event);
+			// Clear the deferredPrompt so it can be garbage collected
+			window.deferredPrompt = null;
 		});
-	  }, []);
+	}, []);
 
 	useEffect(() => {
 
@@ -67,15 +70,20 @@ const Home = () => {
 
 		console.log('👍', 'buttInstall-clicked');
 		const promptEvent = window.deferredPrompt;
+		
 		if (!promptEvent) {
+			
 			// The deferred prompt isn't available.
 			return;
 		}
+
 		// Show the install prompt.
 		promptEvent.prompt();
+		
 		// Log the result
 		const result = await promptEvent.userChoice;
 		console.log('👍', 'userChoice', result);
+		
 		// Reset the deferred prompt variable, since
 		// prompt() can only be called once.
 		window.deferredPrompt = null;
@@ -89,6 +97,12 @@ const Home = () => {
 			<IonHeader>
 				<IonToolbar>
 					<IonTitle>Marvel Characters</IonTitle>
+
+					<IonButtons slot="start">
+						<IonButton color="dark" routerLink="/info">
+							<IonIcon icon={ informationCircleOutline } />
+						</IonButton>
+					</IonButtons>
 					<IonButtons slot="end">
 						<IonButton color="dark" onClick={ () => setShowToast({ show: true, message: "We could easily add a search button here to search characters." }) }>
 							<IonIcon icon={ searchOutline } />
